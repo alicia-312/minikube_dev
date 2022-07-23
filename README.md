@@ -61,10 +61,11 @@ kubectl expose deployment hello-node --type=NodePort --port=8080
 ```
 
 4. Validate that we have a service running 
-
 ```sh
 kubectl get services -A
 ```
+<img width="1015" alt="Screen Shot 2022-07-23 at 09 09 27" src="https://user-images.githubusercontent.com/107967467/180611563-e1cde6a3-cb47-45df-837a-7df3707b8048.png">
+
 
 You can even print out the URL for the serivce and go to the site in your browser. 
 
