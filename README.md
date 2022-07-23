@@ -111,4 +111,5 @@ You can view the yaml for the ingress object
 
 You can describe the ingress object in K9s and see the events as well as the path and more: 
 
-<img width="692" alt="Screen Shot 2022-07-23 at 10 53 38" src="https://user-images.githubusercontent.com/107967467/180614983-10f3903c-ca17-4089-982c-af2f3e946f92.png">
+<img width="824" alt="Screen Shot 2022-07-23 at 10 56 38" src="https://user-images.githubusercontent.com/107967467/180615069-11f19f58-2bca-454a-a08c-0f0ab4bfbe0c.png">
+
