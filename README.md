@@ -28,8 +28,16 @@ How to get started setting up a k8s cluster with minikube.
 
 ```sh
 minikube start
+```
+
+<img width="833" alt="Screen Shot 2022-07-23 at 09 27 34" src="https://user-images.githubusercontent.com/107967467/180611628-00ae29e7-ad3d-4111-afc7-d69388611b46.png">
+
+
+```sh
 minikube dashboard
 ```
+<img width="839" alt="Screen Shot 2022-07-23 at 09 28 01" src="https://user-images.githubusercontent.com/107967467/180611639-7509fa20-dddf-4441-b089-2a8f5e968eff.png">
+
 
 This with start a basic K8s cluster, but this only contains the most basic storage (read/write from local directories), host level networking, and is a single node running all services. Which is not realistic in most environments like development, staging and production. More realistic defaults are preinstalled on your K8s cluster from your piublic cloud provider.
 
@@ -44,6 +52,7 @@ Kubernetes Ingress Contollers:
 ```sh
 minikube addons enable ingress
 ```
+<img width="833" alt="Screen Shot 2022-07-23 at 09 27 14" src="https://user-images.githubusercontent.com/107967467/180611614-5917d887-4603-47fd-95b9-f2c7dd6211c4.png">
 
 2. Create a deployment.
 A k8s pod is a group of one or several containers tied together for administration and networking. A k8s deployment checks on the health of your pod and restarts the pods container if it terminates. Deployments are the recommended way to manage the creation and scaling of pods in your k8s cluster.
