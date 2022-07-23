@@ -87,7 +87,9 @@ minikube service hello-node  --url
 ```
 <img width="831" alt="Screen Shot 2022-07-23 at 09 28 59" src="https://user-images.githubusercontent.com/107967467/180611706-ca6abd4a-9aba-4b05-b9b8-a2578698ddab.png">
 
+When you go to the URL you will see soemthing like this:
 
+<img width="828" alt="Screen Shot 2022-07-23 at 10 05 39" src="https://user-images.githubusercontent.com/107967467/180613145-1f97e7d5-0865-4c10-ae76-faca13976dcd.png">
 
 
 
