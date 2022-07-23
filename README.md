@@ -98,5 +98,6 @@ Create an ingress object by running the following command:
 ```sh
 kubectl apply -f https://k8s.io/examples/service/networking/example-ingress.yaml
 ```
+You can validate this easily be taking a look in k9s like so.
 
 
