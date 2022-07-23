@@ -1,7 +1,7 @@
 <!-- GETTING STARTED -->
 ## Getting Started
 
-This is a repository for local development on macOS Monterey 12.4. I have built a local minikube cluster and will be walking through step-by-step on how to set up a local environment for a Kubernetes Cluster. 
+This a repository for local development on macOS Monterey 12.4. I have built a local minikube cluster and will be walking through step-by-step on how to set up a local environment for a Kubernetes Cluster. 
 
 
 ### Prerequisites
@@ -66,6 +66,11 @@ kubectl expose deployment hello-node --type=NodePort --port=8080
 kubectl get services -A
 ```
 
+You can even print out the URL for the serivce and go to the site in your browser. 
+
+```sh
+minikube service hello-node  --url
+```
 
 
 
