@@ -7,12 +7,13 @@ This a repository for local development on macOS Monterey 12.4. I have built a l
 ### Prerequisites
 
 Required: 
-  ```sh
+```sh
 brew install docker
 brew install minikube
 brew install helm
 brew install --cask virtualbox
-  ```
+
+```
 Nice to Have:
 ```sh
 brew install zsh
@@ -38,6 +39,9 @@ minikube dashboard
 ```
 <img width="839" alt="Screen Shot 2022-07-23 at 09 28 01" src="https://user-images.githubusercontent.com/107967467/180611639-7509fa20-dddf-4441-b089-2a8f5e968eff.png">
 
+If you follow the link in the output from the above command you will be shown the kubernetes Dashboard, which is an interactive UI that allows you to 
+
+<img width="1680" alt="Screen Shot 2022-07-23 at 09 39 15" src="https://user-images.githubusercontent.com/107967467/180612133-09ed22fa-5a07-4426-ac4d-fa7e6405b657.png">
 
 This with start a basic K8s cluster, but this only contains the most basic storage (read/write from local directories), host level networking, and is a single node running all services. Which is not realistic in most environments like development, staging and production. More realistic defaults are preinstalled on your K8s cluster from your piublic cloud provider.
 
