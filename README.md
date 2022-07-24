@@ -6,22 +6,24 @@ This a repository for local development on macOS Monterey 12.4. I have built a l
 ### What do we want to do? 
 
 For this exercise we want to
--  build a local k8s cluster
+- build a local k8s cluster
 - deploy a node.js webapp via helm
 - deploy an nginx ingress controller via helm
-- set up a Chart.yaml to codify our configuration of helm
-
+- have the webapp service ONLY be routable from outside the cluster on the URL `http://local.ecosia.org/tree`
+- Endpoint for webapp service should ONLY accept GET requests from the path `http://local.ecosia.org/tree`
 
 Bonus!
-- be descriptive in the readme, this exercise should be easily followed and interpretted
+- set up a Chart.yaml to codify your configuration of helm
+- be descriptive in the readme, this exercise should be easily followed and interpreted
 - set up Github Actions to deploy changes made to the helm chart version
-- build a cluster in EKS (AWS) and codify the terraform needed for cluster creation
-
 
 ### Prerequisites
 
 Required: 
 ```sh
+brew install docker
+brew install kubectl
+brew install node
 brew install minikube
 brew install helm
 brew install --cask virtualbox
