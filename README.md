@@ -3,29 +3,43 @@
 
 This a repository for local development on macOS Monterey 12.4. I have built a local minikube cluster and will be walking through step-by-step on how to set up a local environment for a Kubernetes Cluster. 
 
+### What do we want to do? 
+
+For this exercise we want to
+- build a local k8s cluster
+- deploy a node.js webapp via helm
+- deploy an nginx ingress controller via helm
+- have the webapp service ONLY be routable from outside the cluster on the URL `http://local.ecosia.org/tree`
+- Endpoint for webapp service should ONLY accept GET requests from the path `http://local.ecosia.org/tree`
+
+Bonus!
+- set up a Chart.yaml to codify your configuration of helm
+- be descriptive in the readme, this exercise should be easily followed and interpreted
+- set up Github Actions to deploy changes made to the helm chart version
 
 ### Prerequisites
 
 Required: 
 ```sh
 brew install docker
+brew install kubectl
+brew install node
 brew install minikube
 brew install helm
 brew install --cask virtualbox
-
 ```
+
 Nice to Have:
+- K9s is a wonderful tool that makes is super easy to navigate your kubernetes clusters and easily view all your manifest files
 ```sh
-brew install zsh
-brew install vscode
 brew install k9s
 ```
 
-### Installation
+### Build a local K8s cluster
 
 How to get started setting up a k8s cluster with minikube.
 
-1. Type the following in  your terminal to start up the k8s cluster and have access to the k8s dashbaord UI for insights into the cluster health. You'll want to keep the `dashboard` up and running, so work from another iterm window or tab.  
+1. Since you've installed the prerequisite by running `brew install minkube` and have virtual box installed as well. You can easily startup your local Kubernetes cluster for development. Type the following in your terminal to start up the k8s cluster and have access to the k8s dashbaord UI for insights into the cluster health. You'll want to keep the `dashboard` up and running, so work from another iterm window or tab.  
 
 ```sh
 minikube start
@@ -39,13 +53,18 @@ minikube dashboard
 ```
 <img width="839" alt="Screen Shot 2022-07-23 at 09 28 01" src="https://user-images.githubusercontent.com/107967467/180611639-7509fa20-dddf-4441-b089-2a8f5e968eff.png">
 
-If you follow the link in the output from the above command you will be shown the kubernetes Dashboard, which is an interactive UI that allows you to 
 
-<img width="1680" alt="Screen Shot 2022-07-23 at 09 39 15" src="https://user-images.githubusercontent.com/107967467/180612133-09ed22fa-5a07-4426-ac4d-fa7e6405b657.png">
+You now have a basic K8s cluster, but this only contains the most basic storage (read/write from local directories), host level networking, and is a single node running all services. Which is not realistic in most environments like development, staging and production. More realistic defaults are preinstalled on your K8s cluster from your piublic cloud provider.
 
-This with start a basic K8s cluster, but this only contains the most basic storage (read/write from local directories), host level networking, and is a single node running all services. Which is not realistic in most environments like development, staging and production. More realistic defaults are preinstalled on your K8s cluster from your piublic cloud provider.
+2. Deploy a node.js web app via helm
+ 
 
-2. Create an Ingress Controller.
+
+
+
+
+
+
 An ingress controller is a specialized load balancer for K8s. An ingress controller abstracts away the complexity of k8s application traffic routing and provides a bridge between K8s services and external services. 
 
 Kubernetes Ingress Contollers: 
@@ -54,6 +73,7 @@ Kubernetes Ingress Contollers:
 	- Monitor the pods running in K8s and auto-update the load-balancing rules when pods are added or removed from a service. 
 
 ```sh
+
 minikube addons enable ingress
 ```
 <img width="833" alt="Screen Shot 2022-07-23 at 09 27 14" src="https://user-images.githubusercontent.com/107967467/180611614-5917d887-4603-47fd-95b9-f2c7dd6211c4.png">
