@@ -135,7 +135,8 @@ CMD [ "npm", "start" ]
 
 Run the following command: `docker build .`
 
-INSERT IMAGE HERE!!
+
+<img width="825" alt="Screen Shot 2022-07-24 at 19 19 06" src="https://user-images.githubusercontent.com/107967467/180847696-045dee95-339f-45d8-ae42-c7026000a5c6.png">
 
 
 Name your docker image 
@@ -150,8 +151,7 @@ To list your newly created image:
 docker images
 ```
 
-
-INSERT IMAGE HERE!!!
+<img width="828" alt="Screen Shot 2022-07-24 at 19 32 41" src="https://user-images.githubusercontent.com/107967467/180847730-4fa73114-d49e-4f2e-853d-576275eea1ec.png">
 
 
 I use docker hub repo to push my images. We will create this as a public image
