@@ -163,6 +163,81 @@ docker login
 docker push <USERNAME>/<APPNAME>
 ```
 
+### Helm Chart
+Now that we have a node app, and a public docker image to run our application. Lets create a helm chart to help us manage our kubernetes cluster. Helm charts provide us with a better way to manage all of our Kubernetes YAML files for our projects. We can deploy versions of our helm chart onto our k8s cluster and can easily see a `diff` to understand the differnces and updates that may occur in a new version of our application. 
+
+Create helm chart: 
+
+```sh
+helm create helm-chart
+```
+
+This will create a template strucutre for helm. We will need to make some modifications to this in order to get our application running. 
+
+Make the following changes to the values.yaml file
+
+Update the image to use your custom Docker image we created earlier.
+
+```sh
+image:
+  repository: aliciaco/helloworld
+  tag: latest
+  pullPolicy: IfNotPresent
+
+nameOverride: ""
+fullnameOverride: ""
+```
+
+Update the service port configuration
+
+```sh
+service:
+  type: NodePort
+  exposePort: 30000
+  targetPort: 8080
+  internalPort: 3000
+```
+
+Navigate to your `service.yaml` configuration file
+
+```sh
+spec:
+  type: {{ .Values.service.type }}
+  ports:
+    - nodePort: {{ .Values.service.exposePort }}
+      port: {{ .Values.service.internalPort }}
+      targetPort: {{ .Values.service.targetPort }}
+      protocol: TCP
+      name: http
+```
+
+### Deploy Helm Chart and Validate Application Running
+
+Run the following command to deploy the helm chart to your cluster
+
+```sh
+helm install <APPNAME> helm-chart/
+```
+
+Now that the helm chart is deployed! We want to test this against our browser
+
+```sh
+minikube service list 
+```
+
+
+insert image here
+
+
+```sh
+minikube service <SERVICE-NAME> --url
+```
+
+Congrats! you can access your app now and you have deployed your application with the help of helm charts to better manage your YAML configuration files needed for Kubernetes and allow for easier versioning and auditing of your applications configuration. 
+
+
+
+
 
 
 
