@@ -1,13 +1,14 @@
 <!-- GETTING STARTED -->
 ## Getting Started
 
-This a repository for local development on macOS Monterey 12.4. I have built a local minikube cluster and will be walking through step-by-step on how to set up a local environment for a Kubernetes Cluster. 
+This a repository for local development on macOS Monterey 12.4. I will walk you through how to build a local minikube cluster. How to set up helm to manage your applications and we can continue building from there! I wrote up some requirements below to follow. 
 
 ### What do we want to do? 
 
 For this exercise we want to
 - build a local k8s cluster
-- deploy a node.js webapp via helm
+- deploy a node.js webapp
+- manage the webapp deployed via helm
 - deploy an nginx ingress controller via helm
 - have the webapp service ONLY be routable from outside the cluster on the URL `http://local.ecosia.org/tree`
 - Endpoint for webapp service should ONLY accept GET requests from the path `http://local.ecosia.org/tree`
@@ -27,6 +28,7 @@ brew install node
 brew install minikube
 brew install helm
 brew install --cask virtualbox
+brew install npm
 ```
 
 Nice to Have:
@@ -39,7 +41,7 @@ brew install k9s
 
 How to get started setting up a k8s cluster with minikube.
 
-1. Since you've installed the prerequisite by running `brew install minkube` and have virtual box installed as well. You can easily startup your local Kubernetes cluster for development. Type the following in your terminal to start up the k8s cluster and have access to the k8s dashbaord UI for insights into the cluster health. You'll want to keep the `dashboard` up and running, so work from another iterm window or tab.  
+1. Since you've installed the prerequisite by running `brew install minkube` and have virtual box installed as well. You can easily start your local Kubernetes cluster for development. Type the following in your terminal to start up the k8s cluster and have access to the k8s dashbaord UI for insights into the cluster health. You'll want to keep the `dashboard` up and running, so work from another iterm window or tab.  
 
 ```sh
 minikube start
@@ -51,16 +53,57 @@ minikube start
 ```sh
 minikube dashboard
 ```
+
 <img width="839" alt="Screen Shot 2022-07-23 at 09 28 01" src="https://user-images.githubusercontent.com/107967467/180611639-7509fa20-dddf-4441-b089-2a8f5e968eff.png">
 
 
 You now have a basic K8s cluster, but this only contains the most basic storage (read/write from local directories), host level networking, and is a single node running all services. Which is not realistic in most environments like development, staging and production. More realistic defaults are preinstalled on your K8s cluster from your piublic cloud provider.
 
-2. Deploy a node.js web app via helm
+2. Deploy a node.js web app.
+
+
+a. Create `package.json` that will outline dependencies for your project.
+
+```sh
+{
+  "name": "node-js-sample",
+  "version": "1.0.0",
+  "description": "A sample Node.js app",
+  "main": "index.js",
+  "scripts": {
+    "start": "node index.js"
+  },
+  "dependencies": {
+    "express": "^4.13.3"
+  },
+  "engines": {
+    "node": "v18.6.0"
+  },
+  "author": "Pankaj Sharma",
+  "license": "MIT"
+}
+```
+
+b. Create `server.js` file that uses express js to create a simple web server listening on port 8080
  
+```sh
+'use strict';
+const express = require('express');
+// Constants
+const PORT = 8080;
+const HOST = 'localhost';
+// App
+const app = express();
+app.get('/', (req, res) => {
+res.send('Hello world\n');
+});
+app.listen(PORT, HOST);
+console.log(`Running on http://${HOST}:${PORT}`);
+```
 
-
-
+To test this
+- run `npm install` to install all the dependencies
+- then run `npm start`
 
 
 
