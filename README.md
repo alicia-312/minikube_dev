@@ -105,14 +105,11 @@ To test this
 
 <img width="826" alt="Screen Shot 2022-07-24 at 19 16 43" src="https://user-images.githubusercontent.com/107967467/180843547-375cf066-de85-47ba-8f34-8144a547579c.png">
 
-<<<<<<< HEAD
-=======
 - then run `npm start` 
 
 <img width="824" alt="Screen Shot 2022-07-24 at 19 16 51" src="https://user-images.githubusercontent.com/107967467/180843588-84317328-9104-4fbc-a51d-4382f1f59525.png">
 
 
->>>>>>> abcce42cfee1f3a5cc841ed475ff3b6522233c08
 An ingress controller is a specialized load balancer for K8s. An ingress controller abstracts away the complexity of k8s application traffic routing and provides a bridge between K8s services and external services. 
 
 Kubernetes Ingress Contollers: 
