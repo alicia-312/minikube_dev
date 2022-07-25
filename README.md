@@ -8,6 +8,7 @@ This a repository for local development on macOS Monterey 12.4. I will walk you 
 For this exercise we want to
 - build a local k8s cluster
 - deploy a node.js webapp
+- create a docker image
 - manage the webapp deployed via helm
 - deploy an nginx ingress controller via helm
 - have the webapp service ONLY be routable from outside the cluster on the URL `http://local.ecosia.org/tree`
@@ -108,6 +109,93 @@ To test this
 - then run `npm start` 
 
 <img width="824" alt="Screen Shot 2022-07-24 at 19 16 51" src="https://user-images.githubusercontent.com/107967467/180843588-84317328-9104-4fbc-a51d-4382f1f59525.png">
+
+
+### Create a docker image
+
+By creating our own docker image we host it on DockerHub, and pull the image onto our machine.
+
+Create `Dockerfile` to keep the commands needed to assemble our docker image.
+
+```sh
+from node:8
+
+# Create app directory
+WORKDIR /usr/node/app
+
+COPY package*.json ./
+
+RUN npm install
+
+COPY . .
+
+EXPOSE 8080
+CMD [ "npm", "start" ]
+```
+
+Run the following command: `docker build .`
+
+INSERT IMAGE HERE!!
+
+
+Name your docker image 
+
+```sh
+docker tag <IMAGE ID> <USERNAME>/<APPNAME>
+```
+
+To list your newly created image: 
+
+```sh
+docker images
+```
+
+
+INSERT IMAGE HERE!!!
+
+
+I use docker hub repo to push my images. We will create this as a public image
+
+Run the following commands:
+
+```sh
+docker login 
+docker push <USERNAME>/<APPNAME>
+```
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
 
 
 An ingress controller is a specialized load balancer for K8s. An ingress controller abstracts away the complexity of k8s application traffic routing and provides a bridge between K8s services and external services. 
