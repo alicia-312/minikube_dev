@@ -10,9 +10,8 @@ For this exercise we want to
 - deploy a node.js webapp
 - create a docker image
 - manage the webapp deployed via helm
-- deploy an nginx ingress controller via helm
-- have the webapp service ONLY be routable from outside the cluster on the URL `http://local.ecosia.org/tree`
-- Endpoint for webapp service should ONLY accept GET requests from the path `http://local.ecosia.org/tree`
+- have the webapp service ONLY be routable from outside the cluster to a specific url
+- Endpoint for webapp service should ONLY accept GET requests from a specified path
 
 Bonus!
 - set up a Chart.yaml to codify your configuration of helm
@@ -171,6 +170,7 @@ Create helm chart:
 ```sh
 helm create helm-chart
 ```
+<img width="826" alt="Screen Shot 2022-07-24 at 19 35 37" src="https://user-images.githubusercontent.com/107967467/180861591-d2a14d6e-60f4-40b1-823f-bbb2e576d808.png">
 
 This will create a template strucutre for helm. We will need to make some modifications to this in order to get our application running. 
 
@@ -224,18 +224,17 @@ Now that the helm chart is deployed! We want to test this against our browser
 ```sh
 minikube service list 
 ```
-
-
-insert image here
-
+<img width="823" alt="Screen Shot 2022-07-25 at 13 39 05" src="https://user-images.githubusercontent.com/107967467/180861618-6a203f08-57b3-406e-9997-8ddf0f69ff79.png">
 
 ```sh
 minikube service <SERVICE-NAME> --url
 ```
+<img width="829" alt="Screen Shot 2022-07-25 at 13 39 26" src="https://user-images.githubusercontent.com/107967467/180861646-10026e94-5fe9-4af7-ab5d-03ac0e07601e.png">
 
 Congrats! you can access your app now and you have deployed your application with the help of helm charts to better manage your YAML configuration files needed for Kubernetes and allow for easier versioning and auditing of your applications configuration. 
 
 
+<img width="535" alt="Screen Shot 2022-07-25 at 13 39 40" src="https://user-images.githubusercontent.com/107967467/180861660-16399958-7f7a-4aa9-90e5-b0dfd6aa22ba.png">
 
 
 
