@@ -59,10 +59,9 @@ minikube dashboard
 
 You now have a basic K8s cluster, but this only contains the most basic storage (read/write from local directories), host level networking, and is a single node running all services. Which is not realistic in most environments like development, staging and production. More realistic defaults are preinstalled on your K8s cluster from your piublic cloud provider.
 
-2. Deploy a node.js web app.
+### Deploy a node.js web app
 
-
-a. Create `package.json` that will outline dependencies for your project.
+Create `package.json` that will outline dependencies for your project.
 
 ```sh
 {
@@ -84,7 +83,7 @@ a. Create `package.json` that will outline dependencies for your project.
 }
 ```
 
-b. Create `server.js` file that uses express js to create a simple web server listening on port 8080
+Create `server.js` file that uses express js to create a simple web server listening on port 8080
  
 ```sh
 'use strict';
@@ -104,8 +103,6 @@ console.log(`Running on http://${HOST}:${PORT}`);
 To test this
 - run `npm install` to install all the dependencies
 - then run `npm start`
-
-
 
 
 An ingress controller is a specialized load balancer for K8s. An ingress controller abstracts away the complexity of k8s application traffic routing and provides a bridge between K8s services and external services. 
