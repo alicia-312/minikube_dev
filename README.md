@@ -10,6 +10,7 @@ For this exercise we want to
 - deploy a node.js webapp
 - create a docker image
 - manage the webapp deployed via helm
+- deploy ingress controller helm chart templates
 - have the webapp service ONLY be routable from outside the cluster to a specific url
 - Endpoint for webapp service should ONLY accept GET requests from a specified path
 
@@ -238,105 +239,15 @@ Congrats! you can access your app now and you have deployed your application wit
 
 
 
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
 An ingress controller is a specialized load balancer for K8s. An ingress controller abstracts away the complexity of k8s application traffic routing and provides a bridge between K8s services and external services. 
 
 Kubernetes Ingress Contollers: 
 	- Accept traffic from outside k8s, and load balance the traffic to pods running inside the platform.
 	- Manages egress traffic inside  a cluster for services which need to communicate outside the cluster
-	- Monitor the pods running in K8s and auto-update the load-balancing rules when pods are added or removed from a service. 
-
-```sh
-
-minikube addons enable ingress
-```
-<img width="833" alt="Screen Shot 2022-07-23 at 09 27 14" src="https://user-images.githubusercontent.com/107967467/180611614-5917d887-4603-47fd-95b9-f2c7dd6211c4.png">
-
-2. Create a deployment.
-A k8s pod is a group of one or several containers tied together for administration and networking. A k8s deployment checks on the health of your pod and restarts the pods container if it terminates. Deployments are the recommended way to manage the creation and scaling of pods in your k8s cluster.
-
-a. You will use the `create` command to build the deployment that will manage the Pod. This pod will be running the `echoserver` image. Echo server is an application that allows a client and a server to connect so a client can send a message to the server, and the server can receive the message and send, or echo, it back to the client. Echo server is written in Java.
-
-```sh
-kubectl create deployment hello-node --image=k8s.gcr.io/echoserver:1.10
-```
-
-3. Now we need to expose the port for the hello-node deployment so services deployed using the ingress controller can be accessed
-
-```sh
-kubectl expose deployment hello-node --type=NodePort --port=8080
-```
-
-4. Validate that we have a service running 
-```sh
-kubectl get services -A
-```
-<img width="1015" alt="Screen Shot 2022-07-23 at 09 09 27" src="https://user-images.githubusercontent.com/107967467/180611563-e1cde6a3-cb47-45df-837a-7df3707b8048.png">
+	- Monitor the pods running in K8s and auto-update the load-balancing rules when pods are added or removed from a service.
 
 
-You can even print out the URL for the serivce and go to the site in your browser. 
 
-```sh
-minikube service hello-node  --url
-```
-<img width="831" alt="Screen Shot 2022-07-23 at 09 28 59" src="https://user-images.githubusercontent.com/107967467/180611706-ca6abd4a-9aba-4b05-b9b8-a2578698ddab.png">
+### Deploy Nginx Ingress Controllers via Helm
 
-When you go to the URL you will see soemthing like this:
-
-<img width="828" alt="Screen Shot 2022-07-23 at 10 05 39" src="https://user-images.githubusercontent.com/107967467/180613145-1f97e7d5-0865-4c10-ae76-faca13976dcd.png">
-
-
-5. Deploy an Ingress Object.
-Create an ingress object by running the following command: 
-
-```sh
-kubectl apply -f https://k8s.io/examples/service/networking/example-ingress.yaml
-```
-<img width="822" alt="Screen Shot 2022-07-23 at 10 44 28" src="https://user-images.githubusercontent.com/107967467/180614957-0d2dfa59-a4b3-433f-8c9b-1b3f85456df3.png">
-
-
-You can validate this easily be taking a look in k9s like so.
-
-<img width="823" alt="Screen Shot 2022-07-23 at 10 37 01" src="https://user-images.githubusercontent.com/107967467/180614945-048a285d-dffb-4817-b91e-df5ce269af35.png">
-
-You can view the yaml for the ingress object
-
-<img width="816" alt="Screen Shot 2022-07-23 at 10 37 12" src="https://user-images.githubusercontent.com/107967467/180614953-bd167396-c29e-45f1-a545-b9ae3e0ce710.png">
-
-You can describe the ingress object in K9s and see the events as well as the path and more: 
-
-<img width="824" alt="Screen Shot 2022-07-23 at 10 56 38" src="https://user-images.githubusercontent.com/107967467/180615069-11f19f58-2bca-454a-a08c-0f0ab4bfbe0c.png">
 
